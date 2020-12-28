@@ -9,11 +9,12 @@ import javax.persistence.Table;
 
 import java.util.Objects;
 
+import com.botscrew.univ.models.ILectorDegree;
 import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "def_lector_degree")
-public class LectorDegree {
+public class LectorDegree implements ILectorDegree {
 
     @Id
     @Column(name = "id_lector_degree")

@@ -1,11 +1,14 @@
 package com.botscrew.univ.models.impl;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,11 +35,12 @@ public class Lector implements ILector, Serializable {
     @Column(name = "last_name", nullable = false, length = 256)
     private String lastName;
 
-    @ManyToMany
-    private List<LectorDegree> lectorDegrees = new ArrayList<>();
+    @OneToOne(mappedBy = "lector", cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    private LectorDegree lectorDegree;
 
     @NotNull
     private Integer salary;
+
 
     public Long getIdLector() {
         return idLector;
@@ -64,12 +68,12 @@ public class Lector implements ILector, Serializable {
         this.lastName = lastName;
     }
 
-    public List<LectorDegree> getLectorDegrees() {
-        return lectorDegrees;
+    public LectorDegree getLectorDegree() {
+        return lectorDegree;
     }
 
-    public void setLectorDegrees(List<LectorDegree> lectorDegrees) {
-        this.lectorDegrees = lectorDegrees;
+    public void setLectorDegree(LectorDegree lectorDegree) {
+        this.lectorDegree = lectorDegree;
     }
 
     @Override
@@ -89,13 +93,13 @@ public class Lector implements ILector, Serializable {
         return idLector.equals(lector.idLector) &&
                 firstName.equals(lector.firstName) &&
                 lastName.equals(lector.lastName) &&
-                lectorDegrees.equals(lector.lectorDegrees) &&
+                lectorDegree.equals(lector.lectorDegree) &&
                 salary.equals(lector.salary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLector, firstName, lastName, lectorDegrees, salary);
+        return Objects.hash(idLector, firstName, lastName, lectorDegree, salary);
     }
 
     @Override
@@ -104,7 +108,7 @@ public class Lector implements ILector, Serializable {
                 "idLector=" + idLector +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", lectorDegrees=" + lectorDegrees +
+                ", lectorDegree=" + lectorDegree +
                 ", salary=" + salary +
                 '}';
     }
