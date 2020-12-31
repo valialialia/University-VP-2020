@@ -1,8 +1,5 @@
 package com.botscrew.univ.models;
 
-import java.util.List;
-
-import com.botscrew.univ.models.impl.LectorDegree;
 
 /**
  * Interface for Lector data exchange with Service Layer
@@ -22,6 +19,14 @@ public interface ILector {
      * @return Lector's last name
      */
     String getLastName();
+
+    /**
+     * Returns Lector's degree
+     *
+     * @return Lector's degree
+     */
+    ILectorDegree getLectorDegree();
+
 
 
     /**
