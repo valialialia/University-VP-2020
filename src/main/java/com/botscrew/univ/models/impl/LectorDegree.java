@@ -17,22 +17,27 @@ import com.sun.istack.NotNull;
 public class LectorDegree implements ILectorDegree {
 
     @Id
-    @Column(name = "id_lector_degree")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idActorRole;
+    @Column(name = "id_lector_degree")
+    private Long idLectorDegree;
 
     @NotNull
     @Column(name = "name", unique = true, nullable = false, length = 256)
     private String name;
 
-    public Long getIdActorRole() {
-        return idActorRole;
+    public LectorDegree(String name) {
+        this.name = name;
     }
 
-    public void setIdActorRole(Long idActorRole) {
-        this.idActorRole = idActorRole;
+    public Long getIdLectorDegree() {
+        return idLectorDegree;
     }
 
+    public void setIdLectorDegree(Long idLectorDegree) {
+        this.idLectorDegree = idLectorDegree;
+    }
+
+    @Override
     public String getName() {
         return name;
     }
@@ -46,19 +51,19 @@ public class LectorDegree implements ILectorDegree {
         if (this == o) return true;
         if (!(o instanceof LectorDegree)) return false;
         LectorDegree that = (LectorDegree) o;
-        return idActorRole.equals(that.idActorRole) &&
+        return idLectorDegree.equals(that.idLectorDegree) &&
                 name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idActorRole, name);
+        return Objects.hash(idLectorDegree, name);
     }
 
     @Override
     public String toString() {
         return "LectorDegree{" +
-                "idActorRole=" + idActorRole +
+                "idLectorDegree=" + idLectorDegree +
                 ", name='" + name + '\'' +
                 '}';
     }

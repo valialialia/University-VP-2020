@@ -5,10 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 import com.botscrew.univ.models.IDepartament;
 import com.sun.istack.NotNull;
@@ -27,8 +32,22 @@ public class Departament implements IDepartament, Serializable {
     private String name;
 
     @OneToOne
-    @Column(name = "head_of_departament", unique = true, nullable = false, length = 256)
+    @JoinColumn(name = "head_of_departament", referencedColumnName = "id_lector")
     private Lector headOfDepartament;
+
+    @OneToMany(mappedBy= "departament")
+    private Set<LectorDepartament> lectorDepartamentSet;
+
+    public Departament(String name, Lector headOfDepartament) {
+        this.name = name;
+        this.headOfDepartament = headOfDepartament;
+    }
+
+    public Departament(String name, Lector headOfDepartament, Set<LectorDepartament> lectorDepartamentSet) {
+        this.name = name;
+        this.headOfDepartament = headOfDepartament;
+        this.lectorDepartamentSet = lectorDepartamentSet;
+    }
 
     public Long getIdDepartament() {
         return idDepartament;
@@ -38,6 +57,7 @@ public class Departament implements IDepartament, Serializable {
         this.idDepartament = idDepartament;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -46,12 +66,21 @@ public class Departament implements IDepartament, Serializable {
         this.name = name;
     }
 
+    @Override
     public Lector getHeadOfDepartament() {
         return headOfDepartament;
     }
 
     public void setHeadOfDepartament(Lector headOfDepartament) {
         this.headOfDepartament = headOfDepartament;
+    }
+
+    public Set<LectorDepartament> getLectorDepartamentSet() {
+        return lectorDepartamentSet;
+    }
+
+    public void setLectorDepartamentSet(Set<LectorDepartament> lectorDepartamentSet) {
+        this.lectorDepartamentSet = lectorDepartamentSet;
     }
 
     @Override
@@ -61,12 +90,13 @@ public class Departament implements IDepartament, Serializable {
         Departament that = (Departament) o;
         return idDepartament.equals(that.idDepartament) &&
                 name.equals(that.name) &&
-                headOfDepartament.equals(that.headOfDepartament);
+                headOfDepartament.equals(that.headOfDepartament) &&
+                lectorDepartamentSet.equals(that.lectorDepartamentSet);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idDepartament, name, headOfDepartament);
+        return Objects.hash(idDepartament, name, headOfDepartament, lectorDepartamentSet);
     }
 
     @Override
@@ -75,6 +105,7 @@ public class Departament implements IDepartament, Serializable {
                 "idDepartament=" + idDepartament +
                 ", name='" + name + '\'' +
                 ", headOfDepartament=" + headOfDepartament +
+                ", lectorDepartamentSet=" + lectorDepartamentSet +
                 '}';
     }
 }
