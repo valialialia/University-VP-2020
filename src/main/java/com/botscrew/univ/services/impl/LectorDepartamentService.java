@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import com.botscrew.univ.exeption.LectorDepartamentServiceException;
 import com.botscrew.univ.models.enums.LectorDegreeEnum;
@@ -63,9 +64,16 @@ public class LectorDepartamentService implements ILectorDepartamentService {
             throw new LectorDepartamentServiceException("LectorDepartment with Departament name: " + departamentName + " wasn't found");
         }
 
-       final List<Lector> lectors = lectorDepartamentSet.stream().map(LectorDepartament::getLector).collect(Collectors.toList());
+       final List<Lector> lectors = lectorDepartamentSet
+               .stream()
+               .map(LectorDepartament::getLector)
+               .collect(Collectors.toList());
 
-        return lectors.stream().mapToInt(Lector::getSalary).average().getAsDouble();
+        return lectors
+                .stream()
+                .mapToInt(Lector::getSalary)
+                .average()
+                .getAsDouble();
     }
 
     @Transactional
@@ -81,14 +89,30 @@ public class LectorDepartamentService implements ILectorDepartamentService {
             throw new LectorDepartamentServiceException("LectorDepartment with Departament name: " + departamentName + " wasn't found");
         }
 
-        final List<Lector> lectors = lectorDepartamentSet.stream().map(LectorDepartament::getLector).collect(Collectors.toList());
+        final List<Lector> lectors = lectorDepartamentSet
+                .stream()
+                .map(LectorDepartament::getLector)
+                .collect(Collectors.toList());
 
 
         Map<String, Integer> statistic = new HashMap<>();
 
-        statistic.put(LectorDegreeEnum.ASSISTANT.toString(), (int) lectors.stream().filter(lector -> lector.getLectorDegree().equals(LectorDegreeEnum.ASSISTANT)).count());
-        statistic.put(LectorDegreeEnum.ASSOCIATE_PROFESSOR.toString(), (int) lectors.stream().filter(lector -> lector.getLectorDegree().equals(LectorDegreeEnum.ASSOCIATE_PROFESSOR)).count());
-        statistic.put(LectorDegreeEnum.PROFESSOR.toString(), (int) lectors.stream().filter(lector -> lector.getLectorDegree().equals(LectorDegreeEnum.PROFESSOR)).count());
+        // TODO: 01.01.2021 Remove hardcode
+
+        statistic.put(LectorDegreeEnum.ASSISTANT.toString(), (int) lectors
+                .stream()
+                .filter(lector -> lector.getLectorDegree().equals(LectorDegreeEnum.ASSISTANT))
+                .count());
+
+        statistic.put(LectorDegreeEnum.ASSOCIATE_PROFESSOR.toString(), (int) lectors
+                .stream()
+                .filter(lector -> lector.getLectorDegree().equals(LectorDegreeEnum.ASSOCIATE_PROFESSOR))
+                .count());
+
+        statistic.put(LectorDegreeEnum.PROFESSOR.toString(), (int) lectors
+                .stream()
+                .filter(lector -> lector.getLectorDegree().equals(LectorDegreeEnum.PROFESSOR))
+                .count());
 
         return statistic;
     }

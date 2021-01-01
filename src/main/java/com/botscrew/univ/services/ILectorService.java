@@ -1,8 +1,10 @@
 package com.botscrew.univ.services;
 
-import com.botscrew.univ.models.ILector;
+import java.util.List;
+
+import com.botscrew.univ.models.impl.Lector;
 
 public interface ILectorService {
 
-    ILector getLectorLike(String nameLike);
+    List<Lector> getLectorLike(String nameLike);
 }
