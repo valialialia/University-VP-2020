@@ -41,7 +41,7 @@ public class Lector implements ILector, Serializable {
     private Integer salary;
 
     @OneToMany(mappedBy = "lector")
-    private Set<LectorDepartament> lectorDepartamentSet;
+    private Set<LectorDepartment> lectorDepartmentSet;
 
     public Lector(String firstName, String lastName, LectorDegree lectorDegree, Integer salary) {
         this.firstName = firstName;
@@ -50,12 +50,12 @@ public class Lector implements ILector, Serializable {
         this.salary = salary;
     }
 
-    public Lector(String firstName, String lastName, LectorDegree lectorDegree, Integer salary, Set<LectorDepartament> lectorDepartamentSet) {
+    public Lector(String firstName, String lastName, LectorDegree lectorDegree, Integer salary, Set<LectorDepartment> lectorDepartmentSet) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.lectorDegree = lectorDegree;
         this.salary = salary;
-        this.lectorDepartamentSet = lectorDepartamentSet;
+        this.lectorDepartmentSet = lectorDepartmentSet;
     }
 
     public Long getIdLector() {
@@ -102,12 +102,12 @@ public class Lector implements ILector, Serializable {
         this.salary = salary;
     }
 
-    public Set<LectorDepartament> getLectorDepartamentSet() {
-        return lectorDepartamentSet;
+    public Set<LectorDepartment> getLectorDepartmentSet() {
+        return lectorDepartmentSet;
     }
 
-    public void setLectorDepartamentSet(Set<LectorDepartament> lectorDepartamentSet) {
-        this.lectorDepartamentSet = lectorDepartamentSet;
+    public void setLectorDepartmentSet(Set<LectorDepartment> lectorDepartmentSet) {
+        this.lectorDepartmentSet = lectorDepartmentSet;
     }
 
     @Override
@@ -120,12 +120,12 @@ public class Lector implements ILector, Serializable {
                 lastName.equals(lector.lastName) &&
                 lectorDegree.equals(lector.lectorDegree) &&
                 salary.equals(lector.salary) &&
-                lectorDepartamentSet.equals(lector.lectorDepartamentSet);
+                lectorDepartmentSet.equals(lector.lectorDepartmentSet);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLector, firstName, lastName, lectorDegree, salary, lectorDepartamentSet);
+        return Objects.hash(idLector, firstName, lastName, lectorDegree, salary, lectorDepartmentSet);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class Lector implements ILector, Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", lectorDegree=" + lectorDegree +
                 ", salary=" + salary +
-                ", lectorDepartamentSet=" + lectorDepartamentSet +
+                ", lectorDepartmentSet=" + lectorDepartmentSet +
                 '}';
     }
 }

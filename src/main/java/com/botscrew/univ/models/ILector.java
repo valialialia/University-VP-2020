@@ -3,7 +3,7 @@ package com.botscrew.univ.models;
 
 import java.util.Set;
 
-import com.botscrew.univ.models.impl.LectorDepartament;
+import com.botscrew.univ.models.impl.LectorDepartment;
 
 /**
  * Interface for Lector data exchange with Service Layer
@@ -40,6 +40,6 @@ public interface ILector {
      */
     int getSalary();
 
-    Set<LectorDepartament> getLectorDepartamentSet();
+    Set<LectorDepartment> getLectorDepartmentSet();
 
 }

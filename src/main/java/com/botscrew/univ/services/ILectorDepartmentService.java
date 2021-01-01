@@ -2,7 +2,7 @@ package com.botscrew.univ.services;
 
 import java.util.Map;
 
-public interface ILectorDepartamentService {
+public interface ILectorDepartmentService {
 
     Integer getEmployeeCount(String departamentName);
 

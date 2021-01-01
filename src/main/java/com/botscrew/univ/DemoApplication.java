@@ -1,13 +1,13 @@
 package com.botscrew.univ;
 
 import com.botscrew.univ.models.enums.LectorDegreeEnum;
-import com.botscrew.univ.models.impl.Departament;
+import com.botscrew.univ.models.impl.Department;
 import com.botscrew.univ.models.impl.Lector;
 import com.botscrew.univ.models.impl.LectorDegree;
-import com.botscrew.univ.models.impl.LectorDepartament;
-import com.botscrew.univ.repositories.DepartamentRepository;
+import com.botscrew.univ.models.impl.LectorDepartment;
+import com.botscrew.univ.repositories.DepartmentRepository;
 import com.botscrew.univ.repositories.LectorDegreeRepository;
-import com.botscrew.univ.repositories.LectorDepartamentRepository;
+import com.botscrew.univ.repositories.LectorDepartmentRepository;
 import com.botscrew.univ.repositories.LectorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +23,7 @@ public class DemoApplication {
 
 @Bean
 	CommandLineRunner runner(LectorDegreeRepository lectorDegreeRepository, LectorRepository lectorRepository,
-							 DepartamentRepository departamentRepository, LectorDepartamentRepository lectorDepartamentRepository) {
+							 DepartmentRepository departmentRepository, LectorDepartmentRepository lectorDepartmentRepository) {
 		return args -> {
 			LectorDegree assistantLectorDegree = new LectorDegree(LectorDegreeEnum.ASSISTANT.toString());
 			LectorDegree associateProfessorLectorDegree = new LectorDegree(LectorDegreeEnum.ASSOCIATE_PROFESSOR.toString());
@@ -47,35 +47,35 @@ public class DemoApplication {
 			lectorRepository.save(lectorMark);
 			lectorRepository.save(lectorBen);
 
-			Departament departamentChemistry = new Departament("Chemistry", lectorChris);
-			Departament departamentGeography = new Departament("Geography", lectorTom);
-			Departament departamentMath = new Departament("Math", lectorRobert);
+			Department departmentChemistry = new Department("Chemistry", lectorChris);
+			Department departmentGeography = new Department("Geography", lectorTom);
+			Department departmentMath = new Department("Math", lectorRobert);
 
-			departamentRepository.save(departamentChemistry);
-			departamentRepository.save(departamentGeography);
-			departamentRepository.save(departamentMath);
+			departmentRepository.save(departmentChemistry);
+			departmentRepository.save(departmentGeography);
+			departmentRepository.save(departmentMath);
 
-			LectorDepartament lectorDepartament1 = new LectorDepartament(lectorTom, departamentGeography);
-			LectorDepartament lectorDepartament2 = new LectorDepartament(lectorRobert, departamentMath);
-			LectorDepartament lectorDepartament3 = new LectorDepartament(lectorRobert, departamentChemistry);
-			LectorDepartament lectorDepartament4 = new LectorDepartament(lectorChris, departamentChemistry);
-			LectorDepartament lectorDepartament5 = new LectorDepartament(lectorTom2, departamentMath);
-			LectorDepartament lectorDepartament6 = new LectorDepartament(lectorTom2, departamentGeography);
-			LectorDepartament lectorDepartament7 = new LectorDepartament(lectorMark, departamentGeography);
-			LectorDepartament lectorDepartament8 = new LectorDepartament(lectorBen, departamentMath);
-			LectorDepartament lectorDepartament9 = new LectorDepartament(lectorBen, departamentChemistry);
-			LectorDepartament lectorDepartament10 = new LectorDepartament(lectorBen, departamentGeography);
+			LectorDepartment lectorDepartment1 = new LectorDepartment(lectorTom, departmentGeography);
+			LectorDepartment lectorDepartment2 = new LectorDepartment(lectorRobert, departmentMath);
+			LectorDepartment lectorDepartment3 = new LectorDepartment(lectorRobert, departmentChemistry);
+			LectorDepartment lectorDepartment4 = new LectorDepartment(lectorChris, departmentChemistry);
+			LectorDepartment lectorDepartment5 = new LectorDepartment(lectorTom2, departmentMath);
+			LectorDepartment lectorDepartment6 = new LectorDepartment(lectorTom2, departmentGeography);
+			LectorDepartment lectorDepartment7 = new LectorDepartment(lectorMark, departmentGeography);
+			LectorDepartment lectorDepartment8 = new LectorDepartment(lectorBen, departmentMath);
+			LectorDepartment lectorDepartment9 = new LectorDepartment(lectorBen, departmentChemistry);
+			LectorDepartment lectorDepartment10 = new LectorDepartment(lectorBen, departmentGeography);
 
-			lectorDepartamentRepository.save(lectorDepartament1);
-			lectorDepartamentRepository.save(lectorDepartament2);
-			lectorDepartamentRepository.save(lectorDepartament3);
-			lectorDepartamentRepository.save(lectorDepartament4);
-			lectorDepartamentRepository.save(lectorDepartament5);
-			lectorDepartamentRepository.save(lectorDepartament6);
-			lectorDepartamentRepository.save(lectorDepartament7);
-			lectorDepartamentRepository.save(lectorDepartament8);
-			lectorDepartamentRepository.save(lectorDepartament9);
-			lectorDepartamentRepository.save(lectorDepartament10);
+			lectorDepartmentRepository.save(lectorDepartment1);
+			lectorDepartmentRepository.save(lectorDepartment2);
+			lectorDepartmentRepository.save(lectorDepartment3);
+			lectorDepartmentRepository.save(lectorDepartment4);
+			lectorDepartmentRepository.save(lectorDepartment5);
+			lectorDepartmentRepository.save(lectorDepartment6);
+			lectorDepartmentRepository.save(lectorDepartment7);
+			lectorDepartmentRepository.save(lectorDepartment8);
+			lectorDepartmentRepository.save(lectorDepartment9);
+			lectorDepartmentRepository.save(lectorDepartment10);
 
 		};
 }

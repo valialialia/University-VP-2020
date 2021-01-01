@@ -3,12 +3,12 @@ package com.botscrew.univ.models;
 
 import java.util.Set;
 
-import com.botscrew.univ.models.impl.LectorDepartament;
+import com.botscrew.univ.models.impl.LectorDepartment;
 
 /**
  * Interface for Departament data exchange with Service Layer
  */
-public interface IDepartament {
+public interface IDepartment {
     /**
      *
      * @return
@@ -19,7 +19,7 @@ public interface IDepartament {
      *
      * @return
      */
-    ILector getHeadOfDepartament();
+    ILector getHeadOfDepartment();
 
-    Set<LectorDepartament> getLectorDepartamentSet();
+    Set<LectorDepartment> getLectorDepartmentSet();
 }
