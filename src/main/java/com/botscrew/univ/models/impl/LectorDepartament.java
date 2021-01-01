@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
@@ -30,6 +29,11 @@ public class LectorDepartament implements ILectorDepartament, Serializable {
     @ManyToOne
     @JoinColumn(name = "id_departament")
     private Departament departament;
+
+    public LectorDepartament(Lector lector, Departament departament) {
+        this.lector = lector;
+        this.departament = departament;
+    }
 
     public Long getIdLectorDepartament() {
         return idLectorDepartament;
